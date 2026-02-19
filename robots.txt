@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://SUBSTITUIR_SEU_DOMINIO.com.br/sitemap.xml
