@@ -884,7 +884,7 @@ textarea.form-control {
     background: var(--bg);
     color: var(--text);
     overflow-x: hidden;
-    padding: clamp(100px, 9vw, 130px) 0 clamp(70px, 7vw, 120px);
+    padding: clamp(50px, 4.5vw, 65px) 0 clamp(70px, 7vw, 120px);
 }
 
 .hero-prime__bg {
@@ -950,7 +950,7 @@ textarea.form-control {
 }
 
 .hero-prime__left {
-    padding-top: clamp(45px, 4.5vw, 85px);
+    padding-top: clamp(20px, 2.2vw, 40px);
     max-width: 820px;
     /* Controle de largura para a headline */
     position: relative;
