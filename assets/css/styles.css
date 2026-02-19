@@ -10,7 +10,7 @@
 :root {
     /* Colors - Dark Premium Palette */
     --bg: #070A12;
-    --bg-surface: #0B1020;
+    --bg-surface: rgba(255, 255, 255, 0.04);
     --bg-header: rgba(7, 10, 18, 0.85);
 
     --text: rgba(255, 255, 255, 0.92);
@@ -19,18 +19,20 @@
 
     /* Accents - Innovation */
     --primary: #7C3AED;
-    /* Roxo */
+    /* Violet */
     --secondary: #22D3EE;
-    /* Ciano */
-    --accent: linear-gradient(90deg, #22D3EE 0%, #7C3AED 55%, #F472B6 100%);
+    /* Cyan */
+    --pink: #F472B6;
+    /* Pink */
+    --accent: linear-gradient(90deg, #22D3EE, #7C3AED 55%, #F472B6);
 
     --success: #10b981;
     --error: #ef4444;
 
     /* Shadows & Effects */
     --shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
-    --radius-sm: 4px;
-    --radius-md: 12px;
+    --radius-sm: 14px;
+    --radius-md: 18px;
     --radius-lg: 22px;
     --radius-full: 9999px;
 
@@ -744,4 +746,90 @@ textarea.form-control {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 11. UPGRADE INNOVATION UTILS                                               */
+/* -------------------------------------------------------------------------- */
+
+/* Monochrome images utility (Authority Look) */
+.img-monochrome {
+    filter: grayscale(100%) contrast(1.1) brightness(0.9);
+    transition: var(--transition-base);
+    opacity: 0.6;
+}
+
+.img-monochrome:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Featured In Section (Confiança) */
+.featured-in {
+    padding: var(--sp-8) 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 10;
+}
+
+.logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--sp-12);
+}
+
+.logo-grid img {
+    height: 38px;
+    width: auto;
+    filter: grayscale(100%) brightness(200%);
+    opacity: 0.5;
+    transition: var(--transition-base);
+}
+
+.logo-grid img:hover {
+    opacity: 1;
+}
+
+/* Visualization Gallery (Provas Visuais) */
+.visual-proofs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--sp-6);
+    margin-bottom: var(--sp-12);
+}
+
+.visual-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+    transition: var(--transition-base);
+}
+
+.visual-card:hover {
+    border-color: var(--secondary);
+    transform: scale(1.02);
+}
+
+.visual-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+}
+
+.visual-card-content {
+    padding: var(--sp-4);
+}
+
+.visual-card-content h4 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.visual-card-content p {
+    font-size: 12px;
+    color: var(--muted);
 }
