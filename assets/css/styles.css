@@ -900,10 +900,10 @@ textarea.form-control {
 .hero-prime__container {
     position: relative;
     display: grid;
-    grid-template-columns: 1.4fr 0.6fr;
-    /* Reequilibra para não sumir com a foto */
+    grid-template-columns: 1.1fr 1fr;
+    /* Abre espaço real para a foto à direita */
     align-items: center;
-    gap: clamp(10px, 3vw, 40px);
+    gap: clamp(20px, 5vw, 60px);
     z-index: 10;
 }
 
@@ -1041,17 +1041,17 @@ textarea.form-control {
 
 .hero-prime__img {
     position: absolute;
-    right: -10vw;
-    /* Garante que a foto escape mas permaneça visível */
-    bottom: -30px;
-    height: clamp(600px, 52vw, 920px);
+    right: -5vw;
+    /* Traz a foto mais para dentro do campo visual */
+    bottom: -10px;
+    height: clamp(650px, 58vw, 980px);
     width: auto;
     object-fit: cover;
     filter: contrast(1.02) saturate(0.95);
     z-index: 1;
-    /* Transição suave à esquerda e sangria lateral para a direita */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 20%, black 40%);
-    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 20%, black 40%);
+    /* Suaviza apenas a borda esquerda para integrar com o texto */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.4) 15%, black 35%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.4) 15%, black 35%);
 }
 
 .hero-prime__imgOverlay {
