@@ -289,12 +289,19 @@ textarea {
 .button--primary {
     background: var(--accent);
     color: #fff;
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+    border: none;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .button--primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.45);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6), 0 0 15px rgba(34, 211, 238, 0.2);
+    /* Um brilho mais intenso no hover */
+    filter: brightness(1.1);
 }
 
 .button--secondary {
@@ -319,6 +326,25 @@ textarea {
 .button--sm {
     font-size: var(--fs-sm);
     padding: 0.6rem 1.2rem;
+    font-weight: 700;
+}
+
+/* Ajuste específico para o Header CTA */
+.header .button--primary {
+    background: linear-gradient(135deg, rgba(28, 160, 184, 0.95), rgba(99, 45, 189, 0.95) 55%, rgba(209, 90, 150, 0.95));
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.header .button--primary:hover {
+    background: var(--accent);
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.5);
+    transform: translateY(-1px) scale(1.03);
+    border-color: rgba(255, 255, 255, 0.3);
+    filter: brightness(1.05);
 }
 
 .button--lg {
