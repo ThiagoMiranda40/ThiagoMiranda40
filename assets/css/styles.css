@@ -884,7 +884,7 @@ textarea.form-control {
     background: var(--bg);
     color: var(--text);
     overflow-x: hidden;
-    padding: clamp(80px, 7vw, 110px) 0 clamp(70px, 7vw, 120px);
+    padding: clamp(100px, 9vw, 130px) 0 clamp(70px, 7vw, 120px);
 }
 
 .hero-prime__bg {
@@ -900,8 +900,8 @@ textarea.form-control {
 .hero-prime__container {
     position: relative;
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    /* Abre espaço real para a foto à direita */
+    grid-template-columns: 1.6fr 0.4fr;
+    /* Maximiza o espaço para a headline */
     align-items: center;
     gap: clamp(20px, 5vw, 60px);
     z-index: 10;
@@ -1041,17 +1041,19 @@ textarea.form-control {
 
 .hero-prime__img {
     position: absolute;
-    right: -5vw;
-    /* Traz a foto mais para dentro do campo visual */
-    bottom: -10px;
-    height: clamp(650px, 58vw, 980px);
+    right: -20vw;
+    /* Sangria profunda movendo você para a direita */
+    bottom: -60px;
+    /* Rebaixado para não entrar no cabeçalho */
+    height: clamp(750px, 62vw, 1050px);
+    /* Impacto gigante */
     width: auto;
     object-fit: cover;
     filter: contrast(1.02) saturate(0.95);
     z-index: 1;
-    /* Suaviza apenas a borda esquerda para integrar com o texto */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.4) 15%, black 35%);
-    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.4) 15%, black 35%);
+    /* Máscara refinada para integrar com o novo grid expandido */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 15%, black 35%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 15%, black 35%);
 }
 
 .hero-prime__imgOverlay {
