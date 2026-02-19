@@ -997,33 +997,36 @@ textarea.form-control {
 
 .hero-prime__img {
     position: absolute;
-    right: -30px;
-    bottom: -10px;
-    height: 610px;
-    width: auto;
-    object-fit: cover;
-    filter: contrast(1.03) saturate(0.98);
-    /* A mágica: a imagem “some” no fundo à esquerda */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 18%, rgba(0, 0, 0, 1) 45%);
-    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 18%, rgba(0, 0, 0, 1) 45%);
-}
 
-.hero-prime__imgOverlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 70% 35%, rgba(255, 255, 255, 0.06), transparent 55%),
-        linear-gradient(90deg, rgba(7, 10, 18, 1) 0%, rgba(7, 10, 18, 0.65) 45%, rgba(7, 10, 18, 0.0) 100%);
-    pointer-events: none;
-}
+    .hero-prime__img {
+        position: absolute;
+        right: -30px;
+        bottom: -10px;
+        height: 610px;
+        width: auto;
+        object-fit: cover;
+        filter: contrast(1.02) saturate(0.95);
+        /* A mágica: a imagem “some” no fundo nas bordas */
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.8) 40%, black 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.8) 40%, black 100%);
+    }
 
-.hero-prime__rim {
-    position: absolute;
-    right: 70px;
-    top: 60px;
-    width: 240px;
-    height: 240px;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.18), rgba(124, 58, 237, 0.14), transparent 70%);
-    filter: blur(20px);
-    opacity: 0.9;
-    pointer-events: none;
-}
+    .hero-prime__imgOverlay {
+        position: absolute;
+        inset: 0;
+        /* Removemos o fundo linear opaco que criava o quadrado */
+        background: radial-gradient(circle at 70% 35%, rgba(255, 255, 255, 0.05), transparent 60%);
+        pointer-events: none;
+    }
+
+    .hero-prime__rim {
+        position: absolute;
+        right: 70px;
+        top: 60px;
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(circle, rgba(34, 211, 238, 0.18), rgba(124, 58, 237, 0.14), transparent 70%);
+        filter: blur(20px);
+        opacity: 0.9;
+        pointer-events: none;
+    }
