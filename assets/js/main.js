@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleMenu = () => {
         const isActive = navLinksContainer.classList.toggle('is-active');
         menuToggle.setAttribute('aria-expanded', isActive);
-        
+
         // Bloqueia o scroll do corpo quando o menu está aberto
         document.body.style.overflow = isActive ? 'hidden' : '';
     };
@@ -31,11 +31,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 2. SCROLL SUAVE (Fallback para navegadores antigos) ---
+    // --- 2. HEADER SCROLL EFFECT ---
+    const header = document.querySelector('.header');
+    const scrollThreshold = 50;
+
+    const handleScroll = () => {
+        if (window.scrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on load
+
+    // --- 3. SCROLL SUAVE (Fallback para navegadores antigos) ---
     // A maioria dos navegadores modernos já usa scroll-behavior: smooth via CSS.
     // Este bloco garante que o offset do header seja respeitado.
     navLinks.forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href.startsWith('#')) {
                 e.preventDefault();
@@ -72,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const id = entry.target.getAttribute('id');
-                
+
                 navItems.forEach(item => {
                     item.classList.remove('active');
                     if (item.getAttribute('href') === `#${id}`) {
@@ -90,9 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const formData = new FormData(this);
             const action = this.getAttribute('action');
             let isValid = true;
@@ -115,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Checa se o action ainda é o placeholder
             if (action === 'SUBSTITUIR_ACTION_DO_FORM' || !action) {
                 alert('Obrigado pelo contato! (Aviso: O formulário ainda está em modo de teste. Para o funcionamento real, configure o endpoint de envio no código).');
-                
+
                 // Fallback: Tenta abrir o WhatsApp ou Email (Opcional conforme o copy final)
                 console.log('Dados capturados:', Object.fromEntries(formData));
                 this.reset();

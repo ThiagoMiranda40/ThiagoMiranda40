@@ -169,13 +169,24 @@ textarea {
     left: 0;
     width: 100%;
     height: var(--header-height);
-    background: var(--bg-header);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    background: transparent;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid transparent;
+}
+
+.header.scrolled {
+    background: rgba(7, 10, 18, 0.72);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    /* Solução para corte menos agressivo: máscara de fade suave no pé do header */
+    mask-image: linear-gradient(to bottom, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 92%, transparent 100%);
 }
 
 .nav {
@@ -875,7 +886,7 @@ textarea.form-control {
     background: var(--bg);
     color: var(--text);
     overflow-x: hidden;
-    padding: clamp(100px, 9vw, 140px) 0 clamp(70px, 7vw, 120px);
+    padding: clamp(80px, 7vw, 110px) 0 clamp(70px, 7vw, 120px);
 }
 
 .hero-prime__bg {
@@ -922,7 +933,7 @@ textarea.form-control {
 }
 
 .hero-prime__left {
-    padding-top: clamp(65px, 6vw, 105px);
+    padding-top: clamp(45px, 4.5vw, 85px);
     /* Alinhado com o topo da cabeça na nova foto */
 }
 
@@ -1031,17 +1042,18 @@ textarea.form-control {
 
 .hero-prime__img {
     position: absolute;
-    right: -15vw;
-    /* Faz a foto vazar para fora do container lateral */
-    bottom: -20px;
-    height: clamp(550px, 48vw, 750px);
+    right: -18vw;
+    /* Sangria maior para acomodar a foto maior */
+    bottom: -30px;
+    height: clamp(650px, 54vw, 880px);
+    /* 15-20% maior que a anterior */
     width: auto;
     object-fit: cover;
     filter: contrast(1.02) saturate(0.95);
     z-index: 1;
-    /* Máscara aprimorada: some suavemente à esquerda e mantém a nitidez na direita */
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.45) 25%, black 45%);
-    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.45) 25%, black 45%);
+    /* Transição suave à esquerda e bleed lateral infinito à direita */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.45) 20%, black 40%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.45) 20%, black 40%);
 }
 
 .hero-prime__imgOverlay {
