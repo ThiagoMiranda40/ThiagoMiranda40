@@ -14,7 +14,7 @@
     --bg-header: rgba(7, 10, 18, 0.85);
 
     --text: rgba(255, 255, 255, 0.92);
-    --muted: rgba(255, 255, 255, 0.68);
+    --muted: rgba(255, 255, 255, 0.70);
     --border: rgba(255, 255, 255, 0.10);
 
     /* Accents - Innovation */
@@ -24,7 +24,10 @@
     /* Cyan */
     --pink: #F472B6;
     /* Pink */
-    --accent: linear-gradient(90deg, #22D3EE, #7C3AED 55%, #F472B6);
+    --cyan: #22D3EE;
+    --violet: #7C3AED;
+    --grad: linear-gradient(90deg, var(--cyan), var(--violet) 55%, var(--pink));
+    --accent: var(--grad);
 
     --success: #10b981;
     --error: #ef4444;
@@ -835,4 +838,192 @@ textarea.form-control {
 .visual-card-content p {
     font-size: 12px;
     color: var(--muted);
+}
+
+/* --- HERO PRIME STYLES --- */
+.hero-prime {
+    position: relative;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    padding: clamp(70px, 7vw, 120px) 0;
+}
+
+.hero-prime__bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(34, 211, 238, 0.10), transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.14), transparent 45%),
+        radial-gradient(circle at 30% 90%, rgba(244, 114, 182, 0.10), transparent 45%);
+    filter: saturate(1.05);
+}
+
+.hero-prime__container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr;
+    align-items: center;
+    gap: clamp(18px, 4vw, 52px);
+    z-index: 10;
+}
+
+@media (max-width: 980px) {
+    .hero-prime__container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-prime__right {
+        order: -1;
+        min-height: 320px;
+    }
+}
+
+.hero-prime__kicker {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+    color: var(--muted);
+    margin-bottom: 18px;
+    font-size: 13px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--cyan), var(--violet));
+    box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
+}
+
+.hero-prime__title {
+    font-size: clamp(36px, 4.1vw, 58px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+}
+
+.hero-prime__title .grad {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-prime__title .muted {
+    color: var(--muted);
+}
+
+.hero-prime__subtitle {
+    color: var(--muted);
+    font-size: clamp(16px, 1.4vw, 18px);
+    max-width: 62ch;
+    margin: 0 0 18px;
+}
+
+.hero-prime__proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 18px;
+}
+
+.pill {
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 14px;
+    padding: 10px 12px;
+    box-shadow: var(--shadow);
+    color: rgba(255, 255, 255, 0.90);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.pill span {
+    display: inline-block;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.60);
+    margin-right: 6px;
+}
+
+.hero-prime__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 600;
+    transition: var(--transition-base);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, rgba(34, 211, 238, 0.18), rgba(124, 58, 237, 0.22));
+    box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.25), var(--shadow);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.hero-prime__micro {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 13px;
+}
+
+/* --- IMAGEM ESTILO “PRIME” --- */
+.hero-prime__right {
+    position: relative;
+    min-height: 520px;
+}
+
+.hero-prime__img {
+    position: absolute;
+    right: -30px;
+    bottom: -10px;
+    height: 610px;
+    width: auto;
+    object-fit: cover;
+    filter: contrast(1.03) saturate(0.98);
+    /* A mágica: a imagem “some” no fundo à esquerda */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 18%, rgba(0, 0, 0, 1) 45%);
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 18%, rgba(0, 0, 0, 1) 45%);
+}
+
+.hero-prime__imgOverlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 35%, rgba(255, 255, 255, 0.06), transparent 55%),
+        linear-gradient(90deg, rgba(7, 10, 18, 1) 0%, rgba(7, 10, 18, 0.65) 45%, rgba(7, 10, 18, 0.0) 100%);
+    pointer-events: none;
+}
+
+.hero-prime__rim {
+    position: absolute;
+    right: 70px;
+    top: 60px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.18), rgba(124, 58, 237, 0.14), transparent 70%);
+    filter: blur(20px);
+    opacity: 0.9;
+    pointer-events: none;
 }

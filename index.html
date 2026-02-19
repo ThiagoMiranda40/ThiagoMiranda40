@@ -52,110 +52,51 @@
     </header>
 
     <main>
-        <!-- HERO (Início) -->
-        <section id="inicio" class="section hero hero--dark">
-            <div class="hero-bg">
-                <div class="hero-grid"></div>
-                <div class="hero-glow hero-glow--a"></div>
-                <div class="hero-glow hero-glow--b"></div>
-            </div>
+        <!-- HERO PRIME -->
+        <section id="inicio" class="hero-prime">
+            <div class="hero-prime__bg"></div>
 
-            <div class="container hero-layout">
-                <!-- LEFT -->
-                <div class="hero-left">
-                    <div class="hero-kicker">
-                        <span class="status-dot"></span>
-                        Consultor de IA aplicada a negócios • Professor (instituição municipal pública) • Criador de
-                        curso de Extensão (Anhanguera/MEC)
+            <div class="container hero-prime__container">
+                <div class="hero-prime__left">
+                    <div class="hero-prime__kicker">
+                        <span class="dot"></span>
+                        Consultor de IA aplicada a negócios • Professor (instituição municipal pública) • Extensão
+                        (Anhanguera/MEC)
                     </div>
 
-                    <h1 class="hero-title">
-                        Eu implemento <span class="accent">IA aplicada a negócios</span> para reduzir trabalho manual,
-                        aumentar produtividade e acelerar decisões —
-                        <span class="muted">com método e governança</span>.
+                    <h1 class="hero-prime__title">
+                        Eu implemento <span class="grad">IA aplicada a negócios</span> para transformar processos,
+                        produto e aprendizagem —
+                        <span class="muted">com método e execução</span>.
                     </h1>
 
-                    <p class="hero-subtitle">
-                        Sou <strong>Thiago Miranda</strong> — Consultor de Inovação, Estratégia e Automações com IA,
-                        professor, facilitador e mentor. Eu desenho e implemento soluções onde IA vira processo, produto
-                        e competência do time — com clareza e execução.
+                    <p class="hero-prime__subtitle">
+                        Sou <strong>Thiago Miranda</strong> — consultor de inovação, estratégia e automações com IA,
+                        professor, facilitador e mentor.
+                        IA que vira <strong>processo</strong>, <strong>produto</strong> e <strong>competência do
+                            time</strong>.
                     </p>
 
-                    <!-- Proof bar / Selos de Autoridade -->
-                    <div class="proof-bar">
-                        <div class="proof-pill">
-                            <span class="proof-label">Extensão Universitária</span>
-                            <span class="proof-value">Negócios de IA (Anhanguera/MEC)</span>
-                        </div>
-                        <div class="proof-pill">
-                            <span class="proof-label">Instituição pública</span>
-                            <span class="proof-value">Campus de Tecnologia e Logística de Cajamar-SP</span>
-                        </div>
-                        <div class="proof-pill">
-                            <span class="proof-label">Empresa</span>
-                            <span class="proof-value">Tríade Tecnologia e Soluções</span>
-                        </div>
+                    <div class="hero-prime__proof">
+                        <div class="pill"><span>Extensão</span> Negócios de IA (Anhanguera/MEC)</div>
+                        <div class="pill"><span>Professor</span> Campus de Tecnologia e Logística de Cajamar-SP</div>
+                        <div class="pill"><span>CEO</span> Tríade Tecnologia e Soluções</div>
                     </div>
 
-                    <!-- Value cards -->
-                    <div class="hero-cards">
-                        <div class="glass-card">
-                            <h3>Automação com IA</h3>
-                            <p>Agentes autônomos, integrações e rotinas inteligentes para reduzir manual e aumentar
-                                consistência.</p>
-                        </div>
-                        <div class="glass-card">
-                            <h3>Estratégia + execução</h3>
-                            <p>Priorização, visão de produto e métricas para transformar decisão em entrega real.</p>
-                        </div>
-                        <div class="glass-card">
-                            <h3>Capacitação de times</h3>
-                            <p>Treinamento prático e adoção sustentável — tecnologia que vira habilidade.</p>
-                        </div>
+                    <div class="hero-prime__actions">
+                        <a href="#contato" class="btn btn-primary">Convidar para projeto / palestra / consultoria</a>
+                        <a href="#credenciais" class="btn btn-secondary">Ver credenciais ↓</a>
                     </div>
 
-                    <!-- CTAs -->
-                    <div class="hero-actions">
-                        <a href="#contato" class="button button--primary button--lg">
-                            Convidar para um projeto / palestra / consultoria
-                        </a>
-
-                        <a href="#credenciais" class="button button--secondary button--lg">
-                            Ver credenciais e atuação ↓
-                        </a>
-                    </div>
-
-                    <div class="hero-microcopy">
+                    <div class="hero-prime__micro">
                         Se não houver fit, eu sinalizo com objetividade — para economizar tempo dos dois lados.
-                    </div>
-
-                    <div class="hero-links">
-                        <a href="#projetos" class="button button--ghost">Conhecer projetos e iniciativas →</a>
                     </div>
                 </div>
 
-                <!-- RIGHT -->
-                <div class="hero-right">
-                    <div class="portrait-card">
-                        <img src="assets/img/thiago-hero.jpg" alt="Thiago Miranda" class="portrait-img" />
-                        <div class="portrait-overlay">
-                            <div class="portrait-name">Thiago Miranda</div>
-                            <div class="portrait-role">Inovação • IA aplicada • Educação • Produto</div>
-                        </div>
-                    </div>
-
-                    <div class="hero-right-stack">
-                        <div class="mini-glass">
-                            <div class="mini-title">Atuação</div>
-                            <div class="mini-text">Consultoria • Treinamentos • Projetos de automação • Mentorias</div>
-                        </div>
-
-                        <div class="mini-glass">
-                            <div class="mini-title">Foco</div>
-                            <div class="mini-text">Processos, produto e capacitação com IA aplicada ao contexto real do
-                                negócio.</div>
-                        </div>
-                    </div>
+                <div class="hero-prime__right" aria-hidden="true">
+                    <img class="hero-prime__img" src="assets/img/hero-prime.png" alt="Thiago Miranda">
+                    <div class="hero-prime__imgOverlay"></div>
+                    <div class="hero-prime__rim"></div>
                 </div>
             </div>
         </section>
