@@ -1070,7 +1070,8 @@ textarea.form-control {
     position: absolute;
     right: -12vw;
     /* Sangria lateral independente */
-    bottom: -60px;
+    bottom: -150px;
+    /* Rebaixado para tirar a cabeça de dentro do cabeçalho */
     height: clamp(750px, 62vw, 1050px);
     width: auto;
     object-fit: cover;
