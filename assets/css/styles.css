@@ -632,27 +632,30 @@ textarea {
 }
 
 .card {
-    background: var(--bg-surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius-md);
     padding: var(--sp-8);
     transition: var(--transition-base);
+    box-shadow: var(--shadow);
 }
 
 .card:hover {
     border-color: var(--secondary);
-    box-shadow: var(--shadow);
     transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.07);
 }
 
 .card h3,
 .card h4 {
     margin-bottom: 16px;
-    color: var(--text);
+    color: rgba(255, 255, 255, 0.90);
 }
 
 .card p {
-    color: var(--muted);
+    color: rgba(255, 255, 255, 0.72);
     font-size: 15px;
 }
 
