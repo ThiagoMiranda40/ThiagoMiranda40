@@ -244,15 +244,40 @@ textarea {
 .nav-links.is-active {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
+    /* Mudei para fixed para garantir que cubra a tela */
     top: var(--header-height);
     left: 0;
     width: 100%;
-    background: var(--bg-surface);
-    padding: var(--sp-8);
+    height: calc(100vh - var(--header-height));
+    /* Ocupa o restante da tela */
+    background: #070A12;
+    /* Fundo sólido para não transparecer conteúdo */
+    padding: var(--sp-12) var(--sp-8);
     border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow);
-    animation: slideDown 0.3s ease-out;
+    z-index: 2000;
+    /* Z-index alto para ficar acima de tudo */
+    animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+}
+
+.nav-links.is-active li {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: var(--sp-4) 0;
+}
+
+.nav-links.is-active li:last-child {
+    border-bottom: none;
+    margin-top: var(--sp-6);
+}
+
+.nav-links.is-active a {
+    font-size: var(--fs-xl);
+    display: block;
+    width: 100%;
 }
 
 @keyframes slideDown {
@@ -810,8 +835,10 @@ textarea.form-control {
 
 /* Featured In Section (Confiança) */
 .featured-in {
-    padding: var(--sp-8) 0;
-    border-bottom: 1px solid var(--border);
+    padding: var(--sp-12) 0;
+    background: linear-gradient(180deg, rgba(7, 10, 18, 0.5), rgba(7, 10, 18, 1));
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     position: relative;
     z-index: 10;
 }
@@ -821,19 +848,25 @@ textarea.form-control {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: var(--sp-12);
+    gap: clamp(var(--sp-12), 6vw, var(--sp-24));
+    /* Mais respiro entre logos */
 }
 
 .logo-grid img {
-    height: 38px;
+    height: clamp(55px, 7vw, 95px);
+    /* Logos com presença real */
     width: auto;
-    filter: grayscale(100%) brightness(200%);
-    opacity: 0.5;
-    transition: var(--transition-base);
+    /* Invert(1) garante que logos pretos (como Tríade) fiquem brancos */
+    filter: brightness(0) invert(1);
+    opacity: 0.45;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-grid img:hover {
+    filter: brightness(1) invert(0);
+    /* Volta para a versão colorida original */
     opacity: 1;
+    transform: scale(1.08);
 }
 
 /* Visualization Gallery (Provas Visuais) */
@@ -883,7 +916,8 @@ textarea.form-control {
     position: relative;
     background: var(--bg);
     color: var(--text);
-    overflow-x: hidden;
+    overflow: hidden;
+    /* Garante o corte da base da foto no desktop */
     padding: clamp(35px, 3.2vw, 45px) 0 clamp(70px, 7vw, 120px);
 }
 
@@ -906,73 +940,6 @@ textarea.form-control {
     z-index: 10;
 }
 
-@media (max-width: 980px) {
-    .hero-prime__container {
-        flex-direction: column;
-        min-height: auto;
-        padding-top: 2rem;
-    }
-
-    .hero-prime__left {
-        max-width: 100%;
-        order: 2;
-        text-align: left;
-    }
-
-    .hero-prime__right {
-        position: relative;
-        width: 100%;
-        height: 320px;
-        order: 1;
-        margin-bottom: var(--sp-8);
-    }
-
-    .hero-prime__img {
-        right: -30px;
-        bottom: 0;
-        height: 380px;
-        -webkit-mask-image: linear-gradient(180deg, black 85%, transparent 100%);
-        mask-image: linear-gradient(180deg, black 85%, transparent 100%);
-    }
-}
-
-.hero-prime__kicker {
-    display: inline-flex;
-    gap: 10px;
-    align-items: center;
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 999px;
-    color: var(--muted);
-    margin-bottom: 18px;
-    font-size: 13px;
-}
-
-.hero-prime__left {
-    padding-top: clamp(15px, 1.5vw, 30px);
-    max-width: 820px;
-    /* Controle de largura para a headline */
-    position: relative;
-    z-index: 20;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 999px;
-    background: linear-gradient(180deg, var(--cyan), var(--violet));
-    box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
-}
-
-.hero-prime__title {
-    font-size: clamp(36px, 4.1vw, 58px);
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    margin: 0 0 28px;
-    /* Margem aumentada para equilíbrio */
-}
-
 .hero-prime__title .grad {
     background: var(--grad);
     -webkit-background-clip: text;
@@ -984,122 +951,290 @@ textarea.form-control {
     color: var(--muted);
 }
 
-.hero-prime__subtitle {
-    color: var(--muted);
-    font-size: clamp(16px, 1.4vw, 18px);
-    max-width: 62ch;
-    margin: 0 0 34px;
-    /* Margem aumentada para equilíbrio */
+@media (max-width: 1024px) {
+    .header .nav-links a.button--primary {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .hero-prime {
+        padding: calc(var(--header-height) + 25px) 0 40px;
+        min-height: auto;
+        display: block;
+        overflow: hidden;
+    }
+
+    .hero-prime__container {
+        display: block;
+        position: relative;
+        min-height: auto;
+        padding-top: 0;
+    }
+
+    /* Headline e Texto à Esquerda */
+    .hero-prime__left {
+        max-width: clamp(65%, 70vw, 75%);
+        /* Cresce proporcionalmente */
+        text-align: left;
+        position: relative;
+        z-index: 20;
+    }
+
+    .hero-prime__title {
+        font-size: clamp(24px, 4.5vw, 42px);
+        /* Headline agora cresce fluida */
+        line-height: 1.1;
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+    }
+
+    .hero-prime__subtitle {
+        font-size: clamp(14px, 2vw, 17px);
+        /* Subheadline fluida */
+        line-height: 1.5;
+        margin-bottom: 28px;
+        max-width: 90%;
+    }
+
+    .hero-prime__right {
+        position: absolute;
+        right: clamp(-120px, -15vw, -30px);
+        /* Mais colada na lateral, ignorando margens */
+        top: 0;
+        /* Alinhada com o topo da headline */
+        bottom: auto;
+        width: auto;
+        height: auto;
+        pointer-events: none;
+        z-index: 10;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .hero-prime__img {
+        /* DINAMISMO: Cresce suavemente de 240px ate ~630px conforme a tela abre */
+        height: clamp(240px, 46vw, 630px);
+        width: auto;
+        object-fit: contain;
+        filter: none;
+        mask-image: none;
+        -webkit-mask-image: linear-gradient(180deg, black 85%, transparent 100%);
+        z-index: 2;
+    }
+
+    /* Botões: Restaurando o estilo visual (Gradientes e Intensidade) */
+    .hero-prime__actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .hero-prime__actions .btn {
+        display: inline-flex;
+        width: auto;
+        min-width: 200px;
+        text-align: center;
+        padding: 12px 18px;
+        font-size: 14px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        /* Transição para o hover */
+    }
+
+    .hero-prime__actions .btn:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.2);
+    }
+
+    .hero-prime__actions .btn-primary {
+        background: linear-gradient(90deg, rgba(34, 211, 238, 0.22), rgba(124, 58, 237, 0.28));
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-prime__actions .btn-secondary {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+    }
+
+    .hero-prime__imgOverlay,
+    .hero-prime__rim,
+    .hero-prime__bg {
+        display: none;
+    }
+
+    .hero-prime__micro {
+        font-size: 11px;
+        /* Efeito de "letras miúdas" */
+        opacity: 0.6;
+        line-height: 1.4;
+        margin-top: 20px;
+        font-style: italic;
+        max-width: 280px;
+        /* Mantém compacto */
+    }
 }
 
-.hero-prime__proof {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 0 0 18px;
-}
+@media (min-width: 1025px) {
+    .hero-prime__kicker {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        padding: 10px 14px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 999px;
+        color: var(--muted);
+        margin-bottom: 18px;
+        font-size: 13px;
+    }
 
-.pill {
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 14px;
-    padding: 10px 12px;
-    box-shadow: var(--shadow);
-    color: rgba(255, 255, 255, 0.90);
-    font-weight: 600;
-    font-size: 14px;
-}
+    .hero-prime__left {
+        padding-top: clamp(15px, 1.5vw, 30px);
+        max-width: 820px;
+        /* Controle de largura para a headline */
+        position: relative;
+        z-index: 20;
+    }
 
-.pill span {
-    display: inline-block;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.60);
-    margin-right: 6px;
-}
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, var(--cyan), var(--violet));
+        box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
+    }
 
-.hero-prime__actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 0;
-    /* Removido para usar a margem do subtítulo */
-}
+    .hero-prime__title {
+        font-size: clamp(36px, 4.1vw, 58px);
+        line-height: 1.04;
+        letter-spacing: -0.02em;
+        margin: 0 0 28px;
+        /* Margem aumentada para equilíbrio */
+    }
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 18px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.92);
-    font-weight: 600;
-    transition: var(--transition-base);
-}
+    .hero-prime__title .muted {
+        color: var(--muted);
+    }
 
-.btn:hover {
-    transform: translateY(-2px);
-}
+    .hero-prime__subtitle {
+        color: var(--muted);
+        font-size: clamp(16px, 1.4vw, 18px);
+        max-width: 62ch;
+        margin: 0 0 34px;
+        /* Margem aumentada para equilíbrio */
+    }
 
-.btn-primary {
-    background: linear-gradient(90deg, rgba(34, 211, 238, 0.18), rgba(124, 58, 237, 0.22));
-    box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.25), var(--shadow);
-}
+    .hero-prime__proof {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0 0 18px;
+    }
 
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.04);
-}
+    .pill {
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 14px;
+        padding: 10px 12px;
+        box-shadow: var(--shadow);
+        color: rgba(255, 255, 255, 0.90);
+        font-weight: 600;
+        font-size: 14px;
+    }
 
-.hero-prime__micro {
-    margin-top: 10px;
-    color: rgba(255, 255, 255, 0.62);
-    font-size: 13px;
-}
+    .pill span {
+        display: inline-block;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.60);
+        margin-right: 6px;
+    }
 
-/* --- IMAGEM ESTILO “PRIME” --- */
-.hero-prime__right {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 60%;
-    /* Ocupa a metade direita da seção de forma independente */
-    height: 100%;
-    pointer-events: none;
-    z-index: 5;
-}
+    .hero-prime__actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 0;
+    }
 
-.hero-prime__img {
-    position: absolute;
-    right: -12vw;
-    /* Sangria lateral independente */
-    bottom: -180px;
-    /* Compensação para manter a foto fixa enquanto a seção sobe */
-    height: clamp(750px, 62vw, 1050px);
-    width: auto;
-    object-fit: cover;
-    filter: contrast(1.02) saturate(0.95);
-    z-index: 1;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 15%, black 35%);
-    mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 15%, black 35%);
-}
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 18px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.92);
+        font-weight: 600;
+        transition: var(--transition-base);
+    }
 
-.hero-prime__imgOverlay {
-    position: absolute;
-    inset: 0;
-    /* Reduzido para não criar faixas ou manchas no rosto */
-    background: radial-gradient(circle at 75% 30%, rgba(255, 255, 255, 0.03), transparent 70%);
-    pointer-events: none;
-}
+    .btn:hover {
+        transform: translateY(-2px);
+    }
 
-.hero-prime__rim {
-    position: absolute;
-    right: 70px;
-    top: 60px;
-    width: 240px;
-    height: 240px;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.18), rgba(124, 58, 237, 0.14), transparent 70%);
-    filter: blur(20px);
-    opacity: 0.9;
-    pointer-events: none;
+    .btn-primary {
+        background: linear-gradient(90deg, rgba(34, 211, 238, 0.18), rgba(124, 58, 237, 0.22));
+        box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.25), var(--shadow);
+    }
+
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hero-prime__micro {
+        margin-top: 10px;
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 13px;
+    }
+
+    /* --- IMAGEM ESTILO “PRIME” --- */
+    .hero-prime__right {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 60%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    .hero-prime__img {
+        position: absolute;
+        right: -12vw;
+        bottom: -220px;
+        /* Mergulha mais a foto para salvar o cabelo no topo */
+        height: clamp(650px, 65vw, 1050px);
+        /* Começa mais próximo do fim do tablet */
+        width: auto;
+        object-fit: cover;
+        z-index: 1;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 15%, black 35%);
+        mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 15%, black 35%);
+    }
+
+    .hero-prime__imgOverlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 75% 30%, rgba(255, 255, 255, 0.03), transparent 70%);
+        pointer-events: none;
+    }
+
+    .hero-prime__rim {
+        position: absolute;
+        right: 70px;
+        top: 60px;
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(circle, rgba(34, 211, 238, 0.18), rgba(124, 58, 237, 0.14), transparent 70%);
+        filter: blur(20px);
+        opacity: 0.9;
+        pointer-events: none;
+    }
 }
